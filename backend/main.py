@@ -3,15 +3,15 @@ from flask_cors import CORS
 from flask_restful import Api
 from os import environ
 
-from config import Config
-from extensions import db, migrate, login_manager, mail
+from backend.core.config import Config
+from backend.core.extensions import db, migrate, login_manager, mail
 from resources.basic_resource import BasicResource
 from resources.pdf_resource import PDFResource
 from resources.employees_resource import EmployeesResource
 from resources.criteries_resource import CriteriesResource
 from resources.certificates_resource import CertificatesResource
-from auth import auth_bp
-from routes import bp as main_bp
+from backend.auth.auth import auth_bp
+from backend.auth.routes import bp as main_bp
 
 PORT = environ.get('BACKEND_PORT', 8000)
 DEBUG = environ.get('DEBUG', True)
@@ -40,7 +40,7 @@ mail.init_app(app)
 # Set up login behavior
 @login_manager.user_loader
 def load_user(user_id):
-    from backend.models import User
+    from backend.models.user import User
     return User.query.get(int(user_id))
 
 login_manager.login_view = "auth.login"
