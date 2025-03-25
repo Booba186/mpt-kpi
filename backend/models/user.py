@@ -1,13 +1,6 @@
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
-
-from extensions import db
-
-
-class Position(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False, unique=True)
-    score_threshold = db.Column(db.Integer, nullable=False)
+from backend.core.extensions import db
 
 
 class User(UserMixin, db.Model):

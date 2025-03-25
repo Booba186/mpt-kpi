@@ -6,8 +6,8 @@ import jwt
 import datetime
 import secrets
 
-from extensions import db, mail
-from models import User
+from backend.core.extensions import db, mail
+from backend.models.user import User
 
 auth_bp = Blueprint("auth", __name__)
 SECRET_KEY = secrets.token_hex(32)  #Генерация ключа, мб поместить в другое место

@@ -2,8 +2,9 @@ from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
 from functools import wraps
 
-from extensions import db
-from models import Position, User, Role
+from backend.core.extensions import db
+from backend.models.user import User
+from backend.models.position import Position
 
 bp = Blueprint("main", __name__)
 
